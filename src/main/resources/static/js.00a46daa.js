@@ -229,16 +229,17 @@ var Grid = /*#__PURE__*/function () {
         var selectedWord = _this.selectedItems.reduce(function (word, cell) {
           return word += cell.getAttribute("data-letter");
         }, '');
-        var reverseSelectedWord = selectedWord.split("").reverse().join("");
+        var reversedSelectedWord = selectedWord.split("").reverse().join("");
         if (_this.words.indexOf(selectedWord) !== -1) {
           _this.foundWords.push(selectedWord);
-        } else if (_this.words.indexOf(reverseSelectedWord) !== -1) {
-          _this.foundWords.push(reverseSelectedWord);
+        } else if (_this.words.indexOf(reversedSelectedWord) !== -1) {
+          _this.foundWords.push(reversedSelectedWord);
         } else {
           _this.selectedItems.forEach(function (item) {
             return item.classList.remove("selected");
           });
         }
+        _this.selectedItems = [];
       });
     }
   }]);
@@ -255,18 +256,18 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var submitWordBtn = document.querySelector(".submit-word");
 submitWordBtn.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var grid, commaSeparatedWords, gridSize, result, wordListNode, wordListSection;
+  var grid, commaSeperatedWords, gridSize, result, wordListNode, wordListSection;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
         grid = new _grid.Grid();
-        commaSeparatedWords = document.querySelector("#add-word").value;
+        commaSeperatedWords = document.querySelector("#add-word").value;
         gridSize = document.querySelector("#grid-size").value;
         _context.next = 5;
-        return fetchGridInfo(gridSize, commaSeparatedWords);
+        return fetchGridInfo(gridSize, commaSeperatedWords);
       case 5:
         result = _context.sent;
-        grid.words = commaSeparatedWords.split(",");
+        grid.words = commaSeperatedWords.split(",");
         grid.renderGrid(gridSize, result);
         wordListNode = document.createTextNode(grid.words);
         wordListSection = document.querySelector(".word-list");
@@ -331,7 +332,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62039" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54132" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
